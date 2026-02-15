@@ -1,0 +1,481 @@
+{
+  "id": "published-AmTrFIceKkvQHMaW-1",
+  "name": "Bechtel-Intel Fire Protection System Design: Supplier Selection & Self-Maintenance Fire Alarms",
+  "description": "Automated workflow from n8n cloud",
+  "industry": "automation",
+  "pattern": "Chain-of-Thought",
+  "complexity": "Intermediate",
+  "tags": [],
+  "steps": [
+    {
+      "id": "ab_webhook_1771162545281",
+      "name": "Webhook Trigger",
+      "description": "Workflow step 1"
+    },
+    {
+      "id": "node_0",
+      "name": "Manual Trigger",
+      "description": "Workflow step 2"
+    },
+    {
+      "id": "node_1",
+      "name": "AI Agent - Requirements Intake",
+      "description": "Workflow step 3"
+    },
+    {
+      "id": "node_2",
+      "name": "AI Agent - System Design & Architecture",
+      "description": "Workflow step 4"
+    },
+    {
+      "id": "node_3",
+      "name": "AI Agent - Supplier Shortlist & Evaluation Matrix",
+      "description": "Workflow step 5"
+    },
+    {
+      "id": "node_4",
+      "name": "AI Agent - Self-Maintenance SOPs & Checklists",
+      "description": "Workflow step 6"
+    },
+    {
+      "id": "node_5",
+      "name": "AI Agent - Final Consolidated Deliverable",
+      "description": "Workflow step 7"
+    },
+    {
+      "id": "ab_route_1771162545281",
+      "name": "Route by HTTP Method",
+      "description": "Workflow step 8"
+    },
+    {
+      "id": "ab_get_ack_1771162545281",
+      "name": "Return GET Acknowledgment",
+      "description": "Workflow step 9"
+    },
+    {
+      "id": "ab_transform_1771162545281",
+      "name": "Transform Input",
+      "description": "Workflow step 10"
+    },
+    {
+      "id": "ab_workflow_config_1771162545281",
+      "name": "Workflow Configuration",
+      "description": "Workflow step 11"
+    },
+    {
+      "id": "ab_mock_if_1771162545281",
+      "name": "Mock Mode?",
+      "description": "Workflow step 12"
+    },
+    {
+      "id": "ab_mock_gen_1771162545281",
+      "name": "Generate Mock Data",
+      "description": "Workflow step 13"
+    },
+    {
+      "id": "ab_prepare_1771162545281",
+      "name": "Prepare Response Payload",
+      "description": "Workflow step 14"
+    },
+    {
+      "id": "sticky_overview_1771162545281",
+      "name": "Overview",
+      "description": "Workflow step 15"
+    },
+    {
+      "id": "sticky_meta_1771162545281",
+      "name": "Meta",
+      "description": "Workflow step 16"
+    },
+    {
+      "id": "6866af94-ab8b-43c6-91f3-7c8e905a03fb",
+      "name": "AWS Bedrock Chat Model",
+      "description": "Workflow step 17"
+    },
+    {
+      "id": "cd4d2be7-430f-4490-ba07-d5d37b32c691",
+      "name": "Simple Memory",
+      "description": "Workflow step 18"
+    }
+  ],
+  "nodes": [
+    {
+      "parameters": {
+        "multipleMethods": true,
+        "path": "bechtel-intel-fire-protection-system-design-supplier-selection-self-maintenance-fire-alarms-preloaded177",
+        "responseMode": "lastNode",
+        "options": {}
+      },
+      "id": "ab_webhook_1771162545281",
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -704,
+        -144
+      ],
+      "webhookId": "95a24e20-cc24-42a5-8961-8bfc78c473ba"
+    },
+    {
+      "parameters": {},
+      "id": "node_0",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        416,
+        288
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{$json.input}}",
+        "options": {
+          "systemMessage": "You are a senior fire protection engineer and EPC advisor supporting Bechtel implementing a fire protection system at an Intel semiconductor plant. Your job is to elicit missing requirements and produce a structured requirements brief. Focus on: (1) supplier selection criteria and process, (2) self-maintenance strategy for fire alarm systems, (3) compliance and documentation expectations typical for semiconductor fabs. Ask clarifying questions if needed, but still produce a best-effort structured brief. Output JSON with keys: project_context, assumptions, clarifying_questions, requirements (array), constraints, deliverables.",
+          "maxIterations": 3
+        }
+      },
+      "id": "node_1",
+      "name": "AI Agent - Requirements Intake",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1,
+      "position": [
+        640,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{$json.input}}",
+        "options": {
+          "systemMessage": "Using the provided requirements brief, design a comprehensive, production-ready fire protection system concept for an Intel semiconductor plant suitable for Bechtel implementation. Include: hazard/risk framing, system scope (fire alarm, detection, notification, suppression interfaces), zoning philosophy, redundancy/availability, commissioning/acceptance testing, cybersecurity/segmentation for networked panels, integration with BMS/SCADA, documentation set, and a self-maintenance program for fire alarms (spares, PMs, calibration, testing cadence, training, KPIs, work orders). Also include a supplier selection framework: RFI/RFQ steps, evaluation matrix, qualification criteria, factory acceptance tests, site acceptance tests, and lifecycle support. Output JSON with keys: design_overview, system_architecture, supplier_selection, self_maintenance_program, testing_and_commissioning, documentation, risks_and_mitigations, open_items.",
+          "maxIterations": 3
+        }
+      },
+      "id": "node_2",
+      "name": "AI Agent - System Design & Architecture",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1,
+      "position": [
+        992,
+        -48
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{$json.input}}",
+        "options": {
+          "systemMessage": "Create a supplier selection package for fire alarm/detection systems for a semiconductor fab. Provide: (1) a generic shortlist of supplier categories and example vendors (do not claim procurement decisions; label as examples), (2) an evaluation matrix with weighted criteria (technical compliance, fab experience, service network, cybersecurity, spares availability, lead times, TCO, training, documentation quality), (3) RFI/RFQ question set, (4) recommended contract/service model options. Output JSON with keys: supplier_categories, example_vendors, evaluation_matrix (criteria array with weights), rfi_questions, rfq_requirements, contract_models.",
+          "maxIterations": 3
+        }
+      },
+      "id": "node_3",
+      "name": "AI Agent - Supplier Shortlist & Evaluation Matrix",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1,
+      "position": [
+        1344,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{$json.input}}",
+        "options": {
+          "systemMessage": "Generate a self-maintenance package for fire alarm systems in a high-availability industrial/semiconductor environment. Include: SOPs for weekly/monthly/quarterly/annual tasks, impairment management, device replacement, panel programming change control, battery testing, detector sensitivity testing, notification appliance testing, recordkeeping, training plan, spare parts strategy, and KPIs. Output JSON with keys: maintenance_strategy, sop_library (array), checklists (array), impairment_process, change_control, training_plan, spares_plan, kpis, sample_forms.",
+          "maxIterations": 3
+        }
+      },
+      "id": "node_4",
+      "name": "AI Agent - Self-Maintenance SOPs & Checklists",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1,
+      "position": [
+        1696,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "text": "={{$json.input}}",
+        "options": {
+          "systemMessage": "Consolidate all prior JSON outputs into a single executive-ready deliverable for Bechtel implementing at an Intel plant. Ensure consistency, remove duplication, and produce a structured package with sections: Executive Summary, Assumptions, Fire Protection System Concept, Fire Alarm System Design Considerations, Supplier Selection Package, Self-Maintenance Program, Testing/Commissioning, Documentation/Deliverables, Risks/Open Items, Next Steps. Output JSON with keys: executive_summary, assumptions, fire_protection_concept, fire_alarm_design, supplier_selection_package, self_maintenance_program, testing_commissioning, documentation_deliverables, risks_open_items, next_steps.",
+          "maxIterations": 3
+        }
+      },
+      "id": "node_5",
+      "name": "AI Agent - Final Consolidated Deliverable",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 1,
+      "position": [
+        2048,
+        48
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "id-1",
+                    "leftValue": "={{ $json.method }}",
+                    "rightValue": "POST",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "POST"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "id-2",
+                    "leftValue": "={{ $json.method }}",
+                    "rightValue": "GET",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "GET"
+            }
+          ]
+        },
+        "options": {
+          "fallbackOutput": "extra",
+          "renameFallbackOutput": "Fallback - Process as POST"
+        }
+      },
+      "id": "ab_route_1771162545281",
+      "name": "Route by HTTP Method",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3,
+      "position": [
+        -480,
+        -160
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "{\n  \"status\": \"ok\",\n  \"message\": \"Webhook is active. Please use POST with input payload.\"\n}",
+        "options": {}
+      },
+      "id": "ab_get_ack_1771162545281",
+      "name": "Return GET Acknowledgment",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1,
+      "position": [
+        1408,
+        -192
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\nconst out = [];\nfor (const item of items) {\n  const j = item.json || {};\n  const body = (j.body && typeof j.body === \"object\") ? { ...j.body } : {};\n  const freeText = body.free_text || j.free_text || j.query || j.message || j.text || j.input || j.question || (typeof j === \"string\" ? j : \"\");\n  out.push({\n    json: {\n      method: j.method || body.method || j.httpMethod || \"POST\",\n      body: {\n        user_id: body.user_id || j.user_id || \"\",\n        free_text: String(freeText || \"\"),\n        raw_transaction: body.raw_transaction || j.raw_transaction || \"\",\n        mock: Boolean(body.mock || j.mock),\n        template_id: body.template_id || j.template_id || \"\",\n        template_name: body.template_name || j.template_name || \"\"\n      }\n    }\n  });\n}\nreturn out;"
+      },
+      "id": "ab_transform_1771162545281",
+      "name": "Transform Input",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -256,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "ab_workflow_config_1771162545281",
+      "name": "Workflow Configuration",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        -32,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": false,
+            "leftValue": "",
+            "typeValidation": "loose"
+          },
+          "conditions": [
+            {
+              "id": "id-1",
+              "leftValue": "={{ $json.body.mock }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "id-2",
+              "leftValue": "={{ $json.agentbridge_configured }}",
+              "rightValue": "true",
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "ab_mock_if_1771162545281",
+      "name": "Mock Mode?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [
+        192,
+        -16
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const steps = [{\"index\":0,\"name\":\"Manual Trigger\",\"description\":\"Performs manualTrigger operations\"},{\"index\":1,\"name\":\"AI Agent - Requirements Intake\",\"description\":\"={{$json.input}}\"},{\"index\":2,\"name\":\"AI Agent - System Design & Architecture\",\"description\":\"={{$json.input}}\"},{\"index\":3,\"name\":\"AI Agent - Supplier Shortlist & Evaluation Matrix\",\"description\":\"={{$json.input}}\"},{\"index\":4,\"name\":\"AI Agent - Self-Maintenance SOPs & Checklists\",\"description\":\"={{$json.input}}\"},{\"index\":5,\"name\":\"AI Agent - Final Consolidated Deliverable\",\"description\":\"={{$json.input}}\"}];\nconst items = $input.all();\nconst out = [];\nconst seeded = (seed) => {\n  let x = seed % 2147483647;\n  if (x <= 0) x += 2147483646;\n  return () => (x = (x * 16807) % 2147483647) / 2147483647;\n};\nfor (const item of items) {\n  const j = item.json || {};\n  const body = (j.body && typeof j.body === \"object\") ? j.body : {};\n  const seedBase = String(body.template_id || \"\") + String(body.user_id || \"\") + String(body.free_text || \"\");\n  let seed = 0;\n  for (let i = 0; i < seedBase.length; i++) seed = (seed * 31 + seedBase.charCodeAt(i)) >>> 0;\n  const rnd = seeded(seed || 1);\n  const stepMocks = steps.map((s) => ({\n    step_index: s.index,\n    step_name: s.name,\n    description: s.description,\n    mock_text: `Mock input for ${s.name}`,\n    mock_id: `${s.index}-${Math.floor(rnd() * 1e9)}`,\n    timestamp: new Date().toISOString()\n  }));\n  out.push({\n    json: {\n      ...j,\n      mock: { enabled: true, steps: stepMocks },\n      body: { ...body, mock: true }\n    }\n  });\n}\nreturn out;"
+      },
+      "id": "ab_mock_gen_1771162545281",
+      "name": "Generate Mock Data",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        96
+      ]
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "ab_prepare_1771162545281",
+      "name": "Prepare Response Payload",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3,
+      "position": [
+        1056,
+        144
+      ]
+    },
+    {
+      "parameters": {
+        "content": "Industry: General\nPattern: Tool-Use\nComplexity: Intermediate\n\nDesign a fire protection system for Bechtel to impleent at Intel plant. I want to look at supplier selection, selef maintenance of fire alarms\n\nGenerated: 2026-02-15T13:35:45.281Z\n\nProudly generated by AgentBridge from Sonata",
+        "height": 320,
+        "width": 560,
+        "color": 2
+      },
+      "id": "sticky_overview_1771162545281",
+      "name": "Overview",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        16,
+        3824
+      ]
+    },
+    {
+      "parameters": {
+        "content": "# Bechtel-Intel Fire Protection System Design: Supplier Selection & Self-Maintenance Fire Alarms\n\nDesign a fire protection system for Bechtel to impleent at Intel plant. I want to look at supplier selection, selef maintenance of fire alarms",
+        "height": 320,
+        "width": 560,
+        "color": 3
+      },
+      "id": "sticky_meta_1771162545281",
+      "name": "Meta",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [
+        592,
+        3824
+      ]
+    },
+    {
+      "parameters": {
+        "modelSource": "inferenceProfile",
+        "model": "global.anthropic.claude-opus-4-6-v1",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatAwsBedrock",
+      "typeVersion": 1.1,
+      "position": [
+        544,
+        352
+      ],
+      "id": "6866af94-ab8b-43c6-91f3-7c8e905a03fb",
+      "name": "AWS Bedrock Chat Model",
+      "credentials": {
+        "aws": {
+          "id": "f6lo2LkViQtdGHMy",
+          "name": "AWS account KI"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "typeVersion": 1.3,
+      "position": [
+        688,
+        464
+      ],
+      "id": "cd4d2be7-430f-4490-ba07-d5d37b32c691",
+      "name": "Simple Memory"
+    }
+  ],
+  "publishedAt": "2026-02-15T13:45:43.109Z",
+  "destination": "launchpad",
+  "deployments": 46,
+  "lastDeployed": "2026-02-15T13:45:43.109Z",
+  "configuration": {
+    "provider": "azure",
+    "region": "eastus",
+    "compute": "cpu-optimized"
+  },
+  "healthStatus": "healthy",
+  "deploymentCount": 3,
+  "githubRepo": "https://github.com/agentbridge/bechtel-intel-fire-protection-system-design:-supplier-selection-&-self-maintenance-fire-alarms",
+  "maintainer": "You",
+  "downloads": 789,
+  "rating": 4.390172146313302,
+  "createdAt": "2026-02-15T13:45:43.109Z",
+  "updatedAt": "2026-02-15T13:45:43.109Z",
+  "isPublished": true,
+  "isFeatured": false,
+  "deploymentMetadata": {
+    "publishedBy": "You",
+    "publishedAt": "2026-02-15T13:45:43.109Z",
+    "source": "Template Selection",
+    "version": "1.0.0"
+  }
+}
